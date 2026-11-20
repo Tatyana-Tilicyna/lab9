@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Бронирование переговорной комнаты</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">🏢</div>
+        <span class="logo-text">Переговорная</span>
+      </div>
+      <div class="sidebar-stats">
+        <div class="stat">
+          <div class="stat-value" id="statToday">0</div>
+          <div class="stat-label">Сегодня</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-label">Всего записей</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div>
+          <h1 class="page-title">Бронирование переговорной</h1>
+          <p class="page-subtitle">Выберите дату и свободный слот для встречи</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-primary" id="btnOpenForm">＋ Новая запись</button>
+        </div>
+      </header>
+
+      <div class="toast-container" id="toastContainer"></div>
+
+      <section class="date-panel">
+        <div class="date-nav">
+          <button class="btn btn-icon" id="btnPrevDay" title="Предыдущий день">‹</button>
+          <input type="date" id="datePicker" class="date-input" />
+          <button class="btn btn-icon" id="btnNextDay" title="Следующий день">›</button>
+          <button class="btn btn-ghost" id="btnToday">Сегодня</button>
+        </div>
+        <div class="date-info">
+          <span class="date-display" id="dateDisplay">—</span>
+          <span class="bookings-count" id="bookingsCount">0 записей</span>
+        </div>
+      </section>
+
+      <section class="slots-section">
+        <h2 class="section-title">Временные слоты</h2>
+        <div class="slots-grid" id="slotsGrid"></div>
+      </section>
+
+      <section class="bookings-section">
+        <h2 class="section-title">Записи на выбранную дату</h2>
+        <div class="bookings-list" id="bookingsList">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📭</div>
+            <p>На эту дату бронирований нет</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Новое бронирование</h2>
+          <button class="btn btn-icon modal-close" id="btnCloseModal">✕</button>
+        </div>
+        <form class="booking-form" id="bookingForm" novalidate>
+          <div class="form-group">
+            <label for="inputName">Ответственный *</label>
+            <input type="text" id="inputName" placeholder="Иван Иванов" required />
+            <span class="form-error" id="errorName"></span>
+          </div>
+          <div class="form-group">
+            <label for="inputTopic">Тема встречи *</label>
+            <input type="text" id="inputTopic" placeholder="Обсуждение проекта" required />
+            <span class="form-error" id="errorTopic"></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputStart">Начало *</label>
+              <select id="inputStart" required></select>
+              <span class="form-error" id="errorStart"></span>
+            </div>
+            <div class="form-group">
+              <label for="inputEnd">Окончание *</label>
+              <select id="inputEnd" required></select>
+              <span class="form-error" id="errorEnd"></span>
+            </div>
+          </div>
+          <div class="form-hint" id="formHint"></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" id="btnCancelForm">Отмена</button>
+            <button type="submit" class="btn btn-primary">Забронировать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
